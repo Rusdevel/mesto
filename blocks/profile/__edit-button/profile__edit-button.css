@@ -1,0 +1,16 @@
+.profile__edit-button {
+    min-width: 282px;
+    min-height: 50px;
+    color: #FFFFFF;
+    margin-top: 36px;
+    font-size: 30px;
+}
+
+@media (min-width: 1000px) {
+    .profile__edit-button {
+        position: absolute;
+        right: 200px;
+        min-width: 150px;
+        padding: 0;
+    }
+}

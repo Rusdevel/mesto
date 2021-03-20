@@ -1,0 +1,15 @@
+.profile__info {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding-top: 22.25px;
+}
+
+@media (min-width: 1000px) {
+    .profile__info {
+        align-self: center;
+        margin-left: 36px;
+        
+    }
+
+}
