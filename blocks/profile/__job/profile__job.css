@@ -9,5 +9,6 @@
     .profile__job {
         font-size: 18px;
         line-height: 21.78px;
+        margin: 0;
     }
 }
