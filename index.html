@@ -1,92 +1,103 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
     <link rel="stylesheet" href="./pages/index.css">
 </head>
+
 <body>
     <div class="page">
         <header class="header">
             <img class="header__logo" src="./images/Logo-header.png" alt="Логотип">
         </header>
 
-    <section class="section">
-        <div class="profile">
-            <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
-            <div class="profile__info">
+        <section class="section">
+            <div class="profile">
+                <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
+                <div class="profile__info">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
                     <button type="button" class="button profile__button"></button>
                     <p class="profile__job">Исследователь океана</p>
+                </div>
+                <button type="button" class="button profile__edit-button">+</button>
             </div>
-            <button type="button" class="button profile__edit-button">+</button>
-        </div>
-    </section>
+        </section>
 
-    <section class="places-list section">
-        <div class="place-card">
-        <img src="./images/kirill-pershin-1088404-unsplash.jpg" class="place-card__image" alt="фото">
-        <div class="place-card__description">
-        <h2 class="place-card__title">Карачаево-Черкессия</h2>
-        <img class="place-card__like-img place-card__like-img_active" alt="лайк" type="button" src="./images/like.svg">
-        </div>
-    </div>
-        <div class="place-card">
-        <img src="./images/Эльбрус.png" class="place-card__image" alt="фото">
-        <div class="place-card__description">
-        <h2 class="place-card__title">Гора Эльбрус</h2>
-        <img class="place-card__like-img place-card__like-img_active" alt="лайк" type="button" src="./images/like.svg">
-        </div>
-    </div>
-        <div class="place-card">
-        <img src="./images/Домбай-1.png" class="place-card__image" alt="фото">
-        <div class="place-card__description">
-        <h2 class="place-card__title">Домбай</h2>        
-        <img class="place-card__like-img place-card__like-img_active" alt="лайк" type="button" src="./images/like.svg">
-        </div>
-    </div>
-        <div class="place-card">
-        <img src="./images/Эльбрус.png" class="place-card__image" alt="фото">
-        <div class="place-card__description">
-        <h2 class="place-card__title">Гора Эльбрус</h2>
-        <img class="place-card__like-img place-card__like-img_active" alt="лайк" type="button" src="./images/like.svg"> 
-        </div>      
-        
-    </div>
-        <div class="place-card">
-        <img src="./images/Домбай-1.png" class="place-card__image" alt="фото">
-        <div class="place-card__description">
-        <h2 class="place-card__title">Домбай</h2>
-        <img class="place-card__like-img place-card__like-img_active" alt="лайк" type="button" src="./images/like.svg">
-        </div>
-    </div>
-        <div class="place-card">
-            <img src="./images/kirill-pershin-1088404-unsplash.jpg" class="place-card__image" alt="фото">
-            <div class="place-card__description">
-        <h2 class="place-card__title">Карачаево-Черкессия</h2>
-        <img class="place-card__like-img place-card__like-img_active" alt="лайк" type="button" src="./images/like.svg">
-        </div>
-    </div>
-    </section>
+        <section class="places-list section">
+            <div class="place-card">
+                <img src="./images/kirill-pershin-1088404-unsplash.jpg" class="place-card__image" alt="фото">
+                <div class="place-card__description">
+                    <h2 class="place-card__title">Карачаево-Черкессия</h2>
+                    <img class="place-card__like-img place-card__like-img_active" alt="лайк" type="button"
+                        src="./images/like.svg">
+                </div>
+            </div>
+            <div class="place-card">
+                <img src="./images/Эльбрус.png" class="place-card__image" alt="фото">
+                <div class="place-card__description">
+                    <h2 class="place-card__title">Гора Эльбрус</h2>
+                    <img class="place-card__like-img place-card__like-img_active" alt="лайк" type="button"
+                        src="./images/like.svg">
+                </div>
+            </div>
+            <div class="place-card">
+                <img src="./images/Домбай-1.png" class="place-card__image" alt="фото">
+                <div class="place-card__description">
+                    <h2 class="place-card__title">Домбай</h2>
+                    <img class="place-card__like-img place-card__like-img_active" alt="лайк" type="button"
+                        src="./images/like.svg">
+                </div>
+            </div>
+            <div class="place-card">
+                <img src="./images/Эльбрус.png" class="place-card__image" alt="фото">
+                <div class="place-card__description">
+                    <h2 class="place-card__title">Гора Эльбрус</h2>
+                    <img class="place-card__like-img place-card__like-img_active" alt="лайк" type="button"
+                        src="./images/like.svg">
+                </div>
 
-    <div class="popup popup_open">
-        <div class="popup__content">
-          <img src="./images/Close Icon.png" alt="Крестик закрывающий редактор профиля" class="popup__close">
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <form class="popup__form" name="Добавить">
-              <input type="text" name="name" class="popup__input popup__input_type_name"  maxlength="12" placeholder="Имя">
-              <input type="text" name="description" class="popup__input popup__input_type_job" maxlength="12" placeholder="О себе">
-              <button class="button popup__button">Сохранить</button>
-          </form>
-        </div>
-      </div>
+            </div>
+            <div class="place-card">
+                <img src="./images/Домбай-1.png" class="place-card__image" alt="фото">
+                <div class="place-card__description">
+                    <h2 class="place-card__title">Домбай</h2>
+                    <img class="place-card__like-img place-card__like-img_active" alt="лайк" type="button"
+                        src="./images/like.svg">
+                </div>
+            </div>
+            <div class="place-card">
+                <img src="./images/kirill-pershin-1088404-unsplash.jpg" class="place-card__image" alt="фото">
+                <div class="place-card__description">
+                    <h2 class="place-card__title">Карачаево-Черкессия</h2>
+                    <img class="place-card__like-img place-card__like-img_active" alt="лайк" type="button"
+                        src="./images/like.svg">
+                </div>
+            </div>
+        </section>
 
-    <footer class="footer">
-        <p class="footer__author">© 2021. Бестаев Руслан</p>
-    </footer>
+        <div class="popup popup_open">
+            <div class="popup__content">
+                <img src="./images/Close Icon.png" alt="Крестик закрывающий редактор профиля" class="popup__close">
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <form class="popup__form" name="Добавить">
+                    <input type="text" name="name" class="popup__input popup__input_type_name" maxlength="12"
+                        placeholder="Имя">
+                    <input type="text" name="description" class="popup__input popup__input_type_job" maxlength="12"
+                        placeholder="О себе">
+                    <button class="button popup__button">Сохранить</button>
+                </form>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p class="footer__author">© 2021. Бестаев Руслан</p>
+        </footer>
 
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -3,12 +3,12 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, 282px);
     gap: 20px 17px;
-   justify-content: center;
+    justify-content: center;
 }
 
 @media(min-width: 1170px) {
     .places-list {
-        grid-template-columns: repeat(3, 282px); 
+        grid-template-columns: repeat(3, 282px);
         padding-top: 48px;
     }
 }
