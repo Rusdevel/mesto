@@ -3,6 +3,9 @@
     font-weight: 500;
     line-height: 32.68px;
     margin: 0 auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media (min-width: 1000px) {

@@ -2,6 +2,7 @@
     font-size: 18px;
     line-height: 22px;
     font-weight: 900;
+    margin: 25px auto 75px auto;
 }
 
 @media (min-width: 1000px) {

@@ -1,0 +1,7 @@
+.place-card__like-img {
+    cursor: pointer;
+}
+
+.place-card__like-img:hover {
+    opacity: 0.6;
+}
