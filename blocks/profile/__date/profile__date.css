@@ -1,4 +1,4 @@
-.profile__info {
+.profile__date {
     display: flex;
     flex-direction: column;
     color: white;
@@ -6,7 +6,7 @@
 }
 
 @media (min-width: 1000px) {
-    .profile__info {
+    .profile__date {
         margin-left: 36px;
         
     }

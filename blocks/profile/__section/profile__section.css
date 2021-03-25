@@ -1,0 +1,15 @@
+.profile__section {
+  max-width: 880px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 42px;
+}
+
+@media (min-width: 1100px) {
+  .profile__section {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  } 
+}
