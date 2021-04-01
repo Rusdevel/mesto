@@ -3,10 +3,9 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-top: 42px;
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1040px) {
   .profile__section {
     width: 100%;
     flex-direction: row;
