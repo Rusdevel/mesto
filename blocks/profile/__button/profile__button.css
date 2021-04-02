@@ -5,12 +5,12 @@
     width: 18px;
     height: 18px;
     border: 1px solid #FFFFFF;
-    background-image: url(../../../images/Vector.png);
+    background-image: url(../../../images/Karandash-image.svg);
     background-repeat: no-repeat;
     background-position: center;
 }
 
-@media (min-width: 1040px) {
+@media (min-width: 1050px) {
     .profile__button {
         width: 24px;
         height: 24px;

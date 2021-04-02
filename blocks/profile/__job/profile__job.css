@@ -9,7 +9,7 @@
     overflow: hidden;
 }
 
-@media (min-width: 1040px) {
+@media (min-width: 1050px) {
     .profile__job {
         max-width: 293px;
         font-size: 18px;

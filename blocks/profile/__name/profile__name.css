@@ -10,7 +10,7 @@
 
 }
 
-@media (min-width: 1040px) {
+@media (min-width: 1050px) {
     .profile__name {
         max-width: 293px;
         font-size: 42px;

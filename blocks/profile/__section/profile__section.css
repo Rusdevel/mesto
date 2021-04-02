@@ -5,7 +5,7 @@
   flex-direction: column;
 }
 
-@media (min-width: 1040px) {
+@media (min-width: 1050px) {
   .profile__section {
     width: 100%;
     flex-direction: row;
