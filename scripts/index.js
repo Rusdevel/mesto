@@ -119,8 +119,8 @@ function openFullImage(event) {
     pupupImageCard.src = event.target.src;
     if (event.target.classList.contains('place-card__image')) {
         popupImageTitle.textContent = event.target.parentNode.querySelector('.place-card__title').textContent;
+        openPopupImage();
     }
-    openPopupImage();
 }
 
 closeBtnpopupImage.addEventListener('click', closePopupImage);
