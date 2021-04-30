@@ -12,3 +12,7 @@ background-image: url(../../../images/trash.svg);
   background-color: transparent;
   transition: opacity 0.9s;
 }
+
+.place-card__trash:hover {
+  opacity: 0.5;
+}
