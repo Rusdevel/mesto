@@ -38,60 +38,49 @@
                     </div>
                 </div>
             </template>
-
-            <template id="popup_profile">
-                <div class="popup">
-                    <div class="popup__content">
-                        <button class="popup__close" type="button"></button>
-                        <h2 class="popup__title">Редактировать профиль</h2>
-                        <form class="popup__form" name="add-form">
-                            <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Имя">
-                            <input type="text" name="description" class="popup__input popup__input_type_job" placeholder="О себе">
-                            <button class="button popup__button" type="submit">Сохранить</button>
-                        </form>
-                    </div>
-                </div>
-            </template>
-            
-            <template id="popup_card">
-                <div class="popup">
-                    <div class="popup__content">
-                        <button class="popup__close" type="button"></button>
-                        <h2 class="popup__title">Новое место</h2>
-                        <form class="popup__form" name="add-form">
-                            <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Название">
-                            <input type="text" name="description" class="popup__input popup__input_type_job"
-                                placeholder="Ссылка на картинку">
-                            <button class="button popup__button" type="submit">Создать</button>
-                        </form>
-                    </div>
-                </div>
-            </template>
-
-            <template id="image_popup">
-            <div class="popup">
-                <div class="popup__container">
-                    <button class="popup__close" type="button"></button>
-                    <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="">
-                    <h2 class="popup__title_image"></h2>
-
-                </div>
-            </div>
-            </template>
-
-
-<!-- 
-            <div class="popup popup_type_image">
-                <div class="popup__upper"></div>
-                <figure class="popup__container">
-                    <img src="#" class="popup__image" alt="фотография" />
-                    <figcaption class="popup__title-image"></figcaption>
-                    <button type="button" class="popup__close popup__close-button hover"></button>
-                </figure>
-            </div>
-            -->
            
         </section>
+
+       
+            <div class="popup popup_type_edit-profile">
+                <div class="popup__content">
+                    <button class="popup__close" type="button"></button>
+                    <h2 class="popup__title">Редактировать профиль</h2>
+                    <form class="popup__form" name="add-form">
+                        <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Имя">
+                        <input type="text" name="description" class="popup__input popup__input_type_job" placeholder="О себе">
+                        <button class="button popup__button" type="submit">Сохранить</button>
+                    </form>
+                </div>
+            </div>
+        
+        
+        
+            <div class="popup popup_type_edite_card">
+                <div class="popup__content">
+                    <button class="popup__close" type="button"></button>
+                    <h2 class="popup__title">Новое место</h2>
+                    <form class="popup__form popup_type_form_edite_card" name="add-form">
+                        <input type="text" name="name" class="popup__input popup__input_type_name popup__input_type_edite_card_name" placeholder="Название">
+                        <input type="text" name="description" class="popup__input popup__input_type_job popup__input_type_edite_card_link"
+                            placeholder="Ссылка на картинку">
+                        <button class="button popup__button" type="submit">Создать</button>
+                    </form>
+                </div>
+            </div>
+        
+
+        
+        <div class="popup popup_type_image">
+            <div class="popup__container">
+                <button class="popup__close" type="button"></button>
+                <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="">
+                <h2 class="popup__title_image"></h2>
+
+            </div>
+        </div>
+        
+
         </main>
 
         <footer class="footer">

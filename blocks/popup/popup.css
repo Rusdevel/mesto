@@ -11,9 +11,7 @@
     z-index: 1;
     opacity: 0;
     transition: visibility 0s, opacity 0.5s linear;
+    visibility: hidden;
 }
 
-.popup:hover {
-    visibility: visible;
-    opacity: 1;
-}
+
