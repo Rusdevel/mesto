@@ -10,13 +10,13 @@ const cardButtonProfile = document.querySelector('.profile__edit-button');
 //Шаблон попапа для карточек
 //const templateCardProfile = document.querySelector('#popup_card').content;
 //Клонируем содержимое шаблона попапа карточек
-const cardElementProfile = document.querySelector('.popup_type_edite_card');
+const cardElementProfile = document.querySelector('.popup_type_edite-card');
 //Кнопка закрытия для карточек
 const closeButtonCardProfile = cardElementProfile.querySelector('.popup__close');
-const formElementCard = cardElementProfile.querySelector('.popup_type_form_edite_card');
-const nameCard = cardElementProfile.querySelector('.popup__input_type_edite_card_name');
+const formElementCard = cardElementProfile.querySelector('.popup_type_form_edite-card');
+const nameCard = cardElementProfile.querySelector('.popup__input_type_edite-card-name');
 // поле ссылки в форме попапа карты
-const linkCard = cardElementProfile.querySelector('.popup__input_type_edite_card_link');
+const linkCard = cardElementProfile.querySelector('.popup__input_type_edite-card-link');
 
 //Находим содержимое попапа профиля
 const profileElement = document.querySelector('.popup_type_edit-profile');
