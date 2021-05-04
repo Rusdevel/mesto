@@ -13,7 +13,7 @@ const cardButtonProfile = document.querySelector('.profile__edit-button');
 const cardElementProfile = document.querySelector('.popup_type_edite-card');
 //Кнопка закрытия для карточек
 const closeButtonCardProfile = cardElementProfile.querySelector('.popup__close');
-const formElementCard = cardElementProfile.querySelector('.popup_type_form');
+const formElementCard = cardElementProfile.querySelector('.popup__form_add-form');
 const nameCard = cardElementProfile.querySelector('.popup__input_type_edite-card-name');
 // поле ссылки в форме попапа карты
 const linkCard = cardElementProfile.querySelector('.popup__input_type_edite-card-link');
