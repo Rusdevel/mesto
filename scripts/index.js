@@ -135,17 +135,21 @@ function deleteCard (evt) {
 // для просмотра фото
 const imagePopup = document.querySelector('.popup_type_image');
 const popupContainer = imagePopup.querySelector('.popup__container');
-const popupImageCard = imagePopup.querySelector('.popup__image');
+const pupupImageCard = imagePopup.querySelector('.popup__image');
 const closeBtnpopupImage = imagePopup.querySelector('.popup__close');
 const popupImageTitle = imagePopup.querySelector('.popup__title_image');
 
+
+
+
+
 function openFullImage(event) {
-    popupImageCard.src = event.target.src;
-    popupImageCard.alt = event.target.parentNode.querySelector('.place-card__title').textContent;
-    popupImageTitle.textContent = event.target.parentNode.querySelector('.place-card__title').textContent;
-
+    pupupImageCard.src = event.target.src;
+    // если убрать if, то при нажатии на лайк или любое место из секциии будет появляться пустой попап
+    if (event.target.classList.contains('place-card__image')) {
+        popupImageTitle.textContent = event.target.parentNode.querySelector('.place-card__title').textContent;
         openPopups(imagePopup);
-
+    }
 }
 
 closeBtnpopupImage.addEventListener('click', () => closePopups(imagePopup));
