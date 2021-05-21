@@ -17,6 +17,7 @@ const formAddCard = popupAddCard.querySelector('.popup__form_add-form');
 const nameCard = popupAddCard.querySelector('.popup__input_type_edite-card-name');
 // поле ссылки в форме попапа карты
 const linkCard = popupAddCard.querySelector('.popup__input_type_edite-card-link');
+const popupContent = document.querySelector('.popup__content');
 
 //Находим содержимое попапа профиля
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
@@ -63,7 +64,9 @@ const nameInput = formEditProfle.querySelector('.popup__input_type_name');
 const jobInput = formEditProfle.querySelector('.popup__input_type_job'); 
  // Функия открытия попапов
 function openPopups (element) { 
-    element.classList.add('popup_open');
+    element.classList.add('popup_open'); 
+    closePopupsOverlay(element);
+    document.addEventListener('keydown', closePopupEsc);
 }
 //Функция открытия попапа профиля
 function openPopupProfile() {
@@ -74,6 +77,7 @@ function openPopupProfile() {
  // Функия закрытия попапа
 function closePopups(element) { 
     element.classList.remove('popup_open');
+    document.removeEventListener('keydown', closePopupEsc);
 } 
  // Обработчик события на открытие попапа
 profileButton.addEventListener('click', openPopupProfile); 
@@ -100,9 +104,11 @@ function closePopupCard() {
 
 // Обработчик события на открытие попапа
 cardButtonProfile.addEventListener('click', () => openPopups(popupAddCard));
+
 // Обработчик события на закрытие попапа
 closeButtonCardProfile.addEventListener('click', closePopupCard);
 formAddCard.addEventListener('submit', formAddCardSubmitHandler);
+
 
 //Загружаем фото и название карточки через попап
 function formAddCardSubmitHandler(evt) {
@@ -133,16 +139,32 @@ const pupupImageCard = imagePopup.querySelector('.popup__image');
 const closeBtnpopupImage = imagePopup.querySelector('.popup__close');
 const popupImageTitle = imagePopup.querySelector('.popup__image-title');
 
+//Закрытие попапа через overlay
+closePopupsOverlay = (element) => {
+    element.addEventListener('mousedown', (evt) => {
+        if (evt.target == element) {
+            closePopups(element);
+        };
+    });
+};
+// Закрытие попапа через esc
+function closePopupEsc(evt) {
+    if (evt.key === 'Escape') {
+        const element = document.querySelector('.popup_open');
+        closePopups(element);
+    }
+}
+
 
 function openFullImage(link, name) {
     pupupImageCard.src = link.src;
     pupupImageCard.alt = name.textContent;
     popupImageTitle.textContent = name.textContent;
     openPopups(imagePopup);
-    
 }
 
 closeBtnpopupImage.addEventListener('click', () => closePopups(imagePopup));
+
 
 // создаем карточки с фото
 function createCardElement (item) {
