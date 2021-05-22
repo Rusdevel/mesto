@@ -1,60 +1,79 @@
-  const  enableValidation = {
+const enableValidation = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
     inactiveButtonClass: 'popup__button_disabled',
     inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-}
-
-  const profileForm = document.forms.profileForm;
-  const profileNames = profileForm.name;
-  const profileDescription = profileForm.description; 
-
-  const cardForm = document.forms.cardForm;
-  const cardName = cardForm.name;
-  const cardUrl = cardForm.url; 
-
-  const hideInputError = (element) => {
-    element.classList.remove('popup__input_type_error');
+    errorClass: 'popup__input-error_visible',
+    errorMessageNullInput: 'Вы пропустили это поле.',
+    errorMessageNullLink: 'Введите адрес сайта.',
+    popupСontainerAdd: '.popup__container_add'
   };
   
-  //Функция, которая проверяет валидность поля
-  const isValid = () => {
-    if (!profileNames.validity.valid) {
-      // Если поле не проходит валидацию, покажем ошибку
-      showInputError(profileForm, profileNames);
+  const showInputError = (formElement, inputElement) => {
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.add(enableValidation.inputErrorClass);
+    setError(formElement, inputElement, enableValidation)
+    errorElement.classList.add(enableValidation.errorClass);
+  };
+
+  const hideInputError = (formElement, inputElement) => {
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.remove(enableValidation.inputErrorClass);
+    errorElement.classList.remove(enableValidation.errorClass);
+    errorElement.textContent = '';
+  };
+
+  const isValid = (formElement, inputElement) => {
+    if (!inputElement.validity.valid) {
+      showInputError(formElement, inputElement, inputElement.validationMessage);
     } else {
-      // Если проходит, скроем
-      hideInputError(profileNames);
+      hideInputError(formElement, inputElement);
     }
   };
-  
-  profileForm.addEventListener('submit', function (evt) {
-    // Отменим стандартное поведение по сабмиту
-    evt.preventDefault();
-  });
-  
-  
-  // Вызовем функцию isValid на каждый ввод символа
-  profileNames.addEventListener('input', isValid); 
-  /*
-    showInputError — показывает элемент ошибки;
-    hideInputError — скрывает элемент ошибки;
-    isValid — проверяет валидность поля, внутри вызывает showInputError или hideInputError.
-  */
 
-  // Функция, которая добавляет класс с ошибкой
-const showInputError = (popupElement, inputElement, ) => {
-  const errorElement = popupElement.querySelector(`#${inputElement.id}-error`);
-  inputElement.classList.add(enableValidation.inputErrorClass);
-  //url(popupElement, inputElement, enableValidation)
-  errorElement.classList.add(enableValidation.errorClass);
-};
+  function changeButtonSwitch(inputList,buttonElement) {
+    if (hasInvalidInput(inputList)) {
+      buttonElement.classList.add(enableValidation.inactiveButtonClass); 
+      buttonElement.setAttribute('disabled', true);
+    } else {
+      buttonElement.classList.remove(enableValidation.inactiveButtonClass);
+      buttonElement.removeAttribute('disabled');
+    }
+  }
 
+  const checkEventListeners = (formElement) => {
+    const inputList = Array.from(formElement.querySelectorAll(enableValidation.inputSelector));
+    const buttonElement = formElement.querySelector(enableValidation.submitButtonSelector);
+    changeButtonSwitch(inputList, buttonElement);
+    inputList.forEach((inputElement) => {
+      inputElement.addEventListener('input', function () {
+        isValid(formElement, inputElement);
+        changeButtonSwitch(inputList, buttonElement);
+      });
+    });
+  }; 
 
+  const enableForm = (enableValidation) => {
+    const formList = Array.from(document.querySelectorAll(enableValidation.formSelector));
+    formList.forEach((formElement) => {
+      formElement.addEventListener('submit', function (evt) {
+        evt.preventDefault();
+      });  
+      checkEventListeners(formElement);
+    });     
+  };
 
-// Функция, которая удаляет класс с ошибкой
+  function hasInvalidInput(inputList) {
+    return inputList.some((inputElement) => {
+      return !inputElement.validity.valid;
+    }); 
+  };
 
-
-  
+  function setError(formElement, inputElement, enableValidation) {
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+    if (inputElement.type === 'url') {
+      errorElement.textContent = enableValidation.errorMessageNullLink;
+    } else !inputElement.value.length > 0 ? errorElement.textContent = enableValidation.errorMessageNullInput : errorElement.textContent = inputElement.validationMessage;
+  }
+  enableForm(enableValidation);
