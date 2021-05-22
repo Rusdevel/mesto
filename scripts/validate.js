@@ -23,7 +23,7 @@
   const isValid = () => {
     if (!profileNames.validity.valid) {
       // Если поле не проходит валидацию, покажем ошибку
-      showInputError(profileNames);
+      showInputError(profileForm, profileNames);
     } else {
       // Если проходит, скроем
       hideInputError(profileNames);
@@ -45,15 +45,13 @@
   */
 
   // Функция, которая добавляет класс с ошибкой
-/*const showInputError = (popupElement, inputElement, errorMessage) => {
-  
+const showInputError = (popupElement, inputElement, ) => {
+  const errorElement = popupElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(enableValidation.inputErrorClass);
-  isValid(popupElement, inputElement, enableValidation)
+  //url(popupElement, inputElement, enableValidation)
   errorElement.classList.add(enableValidation.errorClass);
 };
-showInputError(profileForm, profileNames);*/
-const errorElement = profileForm.querySelector(`#${profileNames.id}-error`);
-  console.log(errorElement);
+
 
 
 // Функция, которая удаляет класс с ошибкой
