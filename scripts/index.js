@@ -18,6 +18,8 @@ const nameCard = popupAddCard.querySelector('.popup__input_type_edite-card-name'
 // поле ссылки в форме попапа карты
 const linkCard = popupAddCard.querySelector('.popup__input_type_edite-card-link');
 const popupContent = document.querySelector('.popup__content');
+const popupButton = popupAddCard.querySelector('.popup__button');
+
 
 //Находим содержимое попапа профиля
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
@@ -65,8 +67,9 @@ const jobInput = formEditProfle.querySelector('.popup__input_type_job');
  // Функия открытия попапов
 function openPopups (element) { 
     element.classList.add('popup_open'); 
-    closePopupsOverlay(element);
     document.addEventListener('keydown', closePopupEsc);
+    popupButton.setAttribute('disabled', 'disabled');
+    popupButton.classList.add('popup__button_disabled');
 }
 //Функция открытия попапа профиля
 function openPopupProfile() {
@@ -85,7 +88,7 @@ profileButton.addEventListener('click', openPopupProfile);
 closeEditProfilePopupBtn.addEventListener('click', () => closePopups(popupEditProfile));
 
 // Функция отправки формы
-function formEditProfileSubmitHandler(evt) { 
+function handleProfileFormSubmit(evt) { 
     evt.preventDefault();  
     profileName.textContent = nameInput.value; 
     profileJob.textContent = jobInput.value;
@@ -93,7 +96,7 @@ function formEditProfileSubmitHandler(evt) {
     closePopups(popupEditProfile);
 } 
  // Обработчик события на отправку формы профиля
-formEditProfle.addEventListener('submit', formEditProfileSubmitHandler);
+formEditProfle.addEventListener('submit', handleProfileFormSubmit);
 
 // Функия закрытия попапа карточек
 function closePopupCard() {
@@ -107,11 +110,14 @@ cardButtonProfile.addEventListener('click', () => openPopups(popupAddCard));
 
 // Обработчик события на закрытие попапа
 closeButtonCardProfile.addEventListener('click', closePopupCard);
-formAddCard.addEventListener('submit', formAddCardSubmitHandler);
+formAddCard.addEventListener('submit', handlerFormAddCardSubmit);
+
+//Обработчик события на закрытие попапа через overlay
+document.addEventListener('click', closePopupsOverlay);
 
 
 //Загружаем фото и название карточки через попап
-function formAddCardSubmitHandler(evt) {
+function handlerFormAddCardSubmit(evt) {
     evt.preventDefault();
     const popupItem = {
         name: nameCard.value,
@@ -120,7 +126,7 @@ function formAddCardSubmitHandler(evt) {
     nameCard.value = '';
     linkCard.value = '';
     //добовляем карточку в конец списка 
-    placeList.appendChild(createCardElement(popupItem))
+    placeList.prepend(createCardElement(popupItem))
     // Закрываем попап после отправки формы
     closePopupCard();
 }
@@ -139,14 +145,15 @@ const pupupImageCard = imagePopup.querySelector('.popup__image');
 const closeBtnpopupImage = imagePopup.querySelector('.popup__close');
 const popupImageTitle = imagePopup.querySelector('.popup__image-title');
 
-//Закрытие попапа через overlay
-closePopupsOverlay = (element) => {
-    element.addEventListener('mousedown', (evt) => {
-        if (evt.target == element) {
-            closePopups(element);
-        };
-    });
-};
+// Функция закрытие попапа через overlay
+function closePopupsOverlay(evt) {
+    if (evt.target.classList.contains('popup')) {
+      const element = document.querySelector('.popup_open')
+      closePopups(element);
+    }
+  }
+
+
 // Закрытие попапа через esc
 function closePopupEsc(evt) {
     if (evt.key === 'Escape') {

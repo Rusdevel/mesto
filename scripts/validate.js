@@ -1,3 +1,5 @@
+// включение валидации вызовом enableValidation
+// все настройки передаются при вызове
 const enableValidation = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -9,21 +11,21 @@ const enableValidation = {
     errorMessageNullLink: 'Введите адрес сайта.',
     popupСontainerAdd: '.popup__container_add'
   };
-  
+  //показывает элемент ошибки
   const showInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(enableValidation.inputErrorClass);
     setError(formElement, inputElement, enableValidation)
     errorElement.classList.add(enableValidation.errorClass);
   };
-
+//скрывает элемент ошибки
   const hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(enableValidation.inputErrorClass);
     errorElement.classList.remove(enableValidation.errorClass);
     errorElement.textContent = '';
   };
-
+// проверяет валидность поля
   const isValid = (formElement, inputElement) => {
     if (!inputElement.validity.valid) {
       showInputError(formElement, inputElement, inputElement.validationMessage);
