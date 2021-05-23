@@ -68,7 +68,6 @@ const jobInput = formEditProfle.querySelector('.popup__input_type_job');
 function openPopups (element) { 
     element.classList.add('popup_open'); 
     document.addEventListener('keydown', closePopupEsc);
-    popupButton.classList.add('popup__button_disabled');
 }
 //Функция открытия попапа профиля
 function openPopupProfile() {
@@ -127,6 +126,7 @@ function handlerFormAddCardSubmit(evt) {
     //добовляем карточку в конец списка 
     placeList.prepend(createCardElement(popupItem))
     //блокируем кнопку отправки
+    popupButton.classList.add('popup__button_disabled');
     popupButton.setAttribute('disabled', 'disabled');
     // Закрываем попап после отправки формы
     closePopupCard();
