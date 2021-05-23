@@ -68,7 +68,6 @@ const jobInput = formEditProfle.querySelector('.popup__input_type_job');
 function openPopups (element) { 
     element.classList.add('popup_open'); 
     document.addEventListener('keydown', closePopupEsc);
-    popupButton.setAttribute('disabled', 'disabled');
     popupButton.classList.add('popup__button_disabled');
 }
 //Функция открытия попапа профиля
@@ -127,6 +126,8 @@ function handlerFormAddCardSubmit(evt) {
     linkCard.value = '';
     //добовляем карточку в конец списка 
     placeList.prepend(createCardElement(popupItem))
+    //блокируем кнопку отправки
+    popupButton.setAttribute('disabled', 'disabled');
     // Закрываем попап после отправки формы
     closePopupCard();
 }
@@ -153,7 +154,6 @@ function closePopupsOverlay(evt) {
     }
   }
 
-
 // Закрытие попапа через esc
 function closePopupEsc(evt) {
     if (evt.key === 'Escape') {
@@ -161,7 +161,6 @@ function closePopupEsc(evt) {
         closePopups(element);
     }
 }
-
 
 function openFullImage(link, name) {
     pupupImageCard.src = link.src;
@@ -171,7 +170,6 @@ function openFullImage(link, name) {
 }
 
 closeBtnpopupImage.addEventListener('click', () => closePopups(imagePopup));
-
 
 // создаем карточки с фото
 function createCardElement (item) {
