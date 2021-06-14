@@ -216,4 +216,8 @@ class PopupForm {
         const popupElement = document.querySelector('.popup_type_edit-profile');
         popupElement.classList.remove('popup_open');
     }
+    _generateProfile() {
+        this.popupElement.querySelector('#name__input').textContent = this.data.name;
+        this.popupElement.querySelector('job-input').textContent = this.data.description;
+    }
 }
