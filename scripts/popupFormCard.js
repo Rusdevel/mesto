@@ -1,7 +1,9 @@
-export default class PopupFormCard {
-    constructor(formSelector, addElement) {
+import Popup from "./Popup.js";
+export class PopupFormCard extends Popup {
+    constructor(selectorElement, formSelector, addElement) {
+        super(selectorElement);
         this._addElement = addElement;
-        document.querySelector(formSelector).addEventListener('submit', this._handlerFormAddCardSubmit)
+        document.querySelector(formSelector).addEventListener('submit', this._handlerFormAddCardSubmit);
     }
     //метод работает при нажатии на сабмит
     _handlerFormAddCardSubmit = (evt) => {
@@ -12,6 +14,7 @@ export default class PopupFormCard {
         evt.target.reset();
         const poupImage = document.querySelector('.popup_type_edite-card');
         poupImage.classList.remove('popup_open');
+        /*popupButton.classList.add('popup__button_disabled');
+        popupButton.setAttribute('disabled', 'disabled');*/ 
     }
 }
-
