@@ -1,6 +1,6 @@
 // включение валидации вызовом enableValidation
 // все настройки передаются при вызове
-export {enableValidation};
+
 
  const enableValidation = {
     formSelector: '.popup__form',

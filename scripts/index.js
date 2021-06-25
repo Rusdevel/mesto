@@ -1,7 +1,8 @@
 import Card from './Card.js';
+import {enableValidation} from './validateConfig.js';
+import FormValidator from './FormValidator.js';
 import Popup from './Popup.js';
 import { PopupFormCard } from './popupFormCard.js';
-import { enableValidation } from '../scripts/validate.js';
 import { initialCards } from '../scripts/initialCards.js';
 import { PopupForProfile } from './popupProfile.js';
 const profileButton = document.querySelector('.profile__button'); 
@@ -10,7 +11,6 @@ const profileButton = document.querySelector('.profile__button');
 //const templateProfile = document.querySelector('#popup_profile').content;
 //найдем page
 const page = document.querySelector('.page'); 
-
 
 const cardButton = document.querySelector('.profile__edit-button');
 //Шаблон попапа для карточек
@@ -85,6 +85,9 @@ initialCards.forEach((item) => {
         closePopups(element);
     }
 }*/
+// класс для валидации профиля
+const validatorForProfile = new FormValidator(enableValidation, popupEditProfile);
+validatorForProfile.enableForm();
 
 //класс для работы с формой
 const popupFormCard = new PopupFormCard(popupAddCard, '.popup__form_add-form', (data) => {
@@ -92,6 +95,10 @@ const popupFormCard = new PopupFormCard(popupAddCard, '.popup__form_add-form', (
     const placeList = document.querySelector('.places-list');
     placeList.prepend(card);
 });
+// класс для валидации добавления карточек
+const poupImage = document.querySelector('.popup_type_edite-card');
+const validatorForCard = new FormValidator(enableValidation, poupImage);
+validatorForCard.enableForm();
 
 const popupProfile = new PopupForProfile(popupEditProfile, formEditProfle);
 
