@@ -1,4 +1,3 @@
-import { initialCards } from './initialCards.js';
 // для просмотра фото
 const imagePopup = document.querySelector('.popup_type_image');
 const popupContainer = imagePopup.querySelector('.popup__container');
@@ -22,13 +21,6 @@ export default class Card {
         this._element.querySelector(this._image).addEventListener('click', () => {
             this._handleOpenPopup()
         });
-        closeBtnpopupImage.addEventListener('click', () => {
-            this._handleClosePopup()
-        });
-        document.addEventListener('keydown', this._closePopupEsc);
-
-        //this._element.querySelector(this._image).addEventListener('click', () => this._openFullImage(this._name, this._link));
-
     }
 
     _getTemplateCard() {
@@ -56,30 +48,10 @@ export default class Card {
         imagePopup.classList.add('popup_open');
     }
 
-    _handleClosePopup() {
-        pupupImageCard.src = '';
-        imagePopup.classList.remove('popup_open');
-    }
-
-    _closePopupEsc(evt) {
-        if (evt.key === 'Escape') {
-            imagePopup.classList.remove('popup_open');
-        }
-    }
-// Функция закрытие попапа через overlay
-    _closePopupOverlay(evt) {
-            if (evt.target.classList.contains('popup')) {
-                const element = document.querySelector('.popup_open')
-                imagePopup.classList.remove('popup_open');
-            }
-    }
-
     generateCard() {
         // Запишем разметку в приватное поле _element. 
         // Так у других элементов появится доступ к ней.
         this._element = this._getTemplateCard();
-        
-        
         // создаем карточки с фото
         this._element.querySelector('.place-card__image').src = this._link;
         this._element.querySelector('.place-card__title').textContent = this._name;
@@ -89,6 +61,4 @@ export default class Card {
         
         return this._element;
     }
-    // отрисовываем карточки из массива на странице
 }
-

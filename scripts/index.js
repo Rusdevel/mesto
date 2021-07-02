@@ -32,68 +32,37 @@ const closeEditProfilePopupBtn = popupEditProfile.querySelector('.popup__close')
 // Находим форму
 const formEditProfle = popupEditProfile.querySelector('.popup__form');
     
- // Обработчик события на закрытие попапа
-//closeEditProfilePopupBtn.addEventListener('click', () => closePopups(popupEditProfile));
-/*
-/
-// Функия закрытия попапа карточек
-function closePopupCard() {
-    closePopups(popupAddCard)
-    nameCard.value = '';
-    linkCard.value = ''; 
-}
-*/
-
-//Загружаем фото и название карточки через попап
-/*function handlerFormAddCardSubmit(evt) {
-    evt.preventDefault();
-    // Создадим экземпляр карточки
-    const card = new Card(date, '#templateCard');
-    nameCard.value = '';
-    linkCard.value = '';
-    //добовляем карточку в конец списка 
-    placeList.prepend(createCardElement(popupItem))
-    //блокируем кнопку отправки
-    popupButton.classList.add('popup__button_disabled');
-    popupButton.setAttribute('disabled', 'disabled');
-    // Закрываем попап после отправки формы
-    closePopupCard();
-}*/
-
-initialCards.forEach((item) => {
-    // Создадим экземпляр карточки
+//карточка
+const cardImage = '.place-card__image';
+// попап карточки
+const imagePopup = document.querySelector('.popup_type_image');
+//создаем новый экземпляр карточки
+ const createCard = (item) => {
     const card = new Card(item, '#templateCard');
-    // Создаём карточку и возвращаем наружу
-    const cardElement = card.generateCard();
+    return card.generateCard();
+  } 
+  // элемент списка карточек
+  const placeList = document.querySelector('.places-list');
+  
+initialCards.forEach((item) => {
+    
     // Добавляем в DOM
-    const placeList = document.querySelector('.places-list');
-    placeList.append(cardElement);
+    placeList.append(createCard(item));
 });
-
-// Функция закрытие попапа через overlay
- /*function closePopupsOverlay(evt) {
-    if (evt.target.classList.contains('popup')) {
-      const element = document.querySelector('.popup_open')
-      closePopups(element);
-    }
-  }
- */
-// Закрытие попапа через esc
-/*function closePopupEsc(evt) {
-    if (evt.key === 'Escape') {
-        const element = document.querySelector('.popup_open');
-        closePopups(element);
-    }
-}*/
+//создаем экземпляр класса попапа карточек
+const poupCard = new Popup(imagePopup);
+//устанвливаем слушатель на поппап карточки
+document.querySelector(cardImage).addEventListener('click', () => poupCard._setEventListners());
+ 
 // класс для валидации профиля
 const validatorForProfile = new FormValidator(enableValidation, popupEditProfile);
 validatorForProfile.enableForm();
 
 //класс для работы с формой
 const popupFormCard = new PopupFormCard(popupAddCard, '.popup__form_add-form', (data) => {
-    const card = new Card(data, '#templateCard').generateCard();
+    createCard(data);
     const placeList = document.querySelector('.places-list');
-    placeList.prepend(card);
+    placeList.prepend(createCard(data));
 });
 // класс для валидации добавления карточек
 const poupImage = document.querySelector('.popup_type_edite-card');

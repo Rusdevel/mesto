@@ -4,6 +4,9 @@ export class PopupFormCard extends Popup {
         super(selectorElement);
         this._addElement = addElement;
         document.querySelector(formSelector).addEventListener('submit', this._handlerFormAddCardSubmit);
+        this._popupAddCard = document.querySelector('.popup_type_edite-card');
+        this._nameCard = this._popupAddCard.querySelector('.popup__input_type_edite-card-name');
+        this._linkCard = this._popupAddCard.querySelector('.popup__input_type_edite-card-link');
     }
     //метод работает при нажатии на сабмит
     _handlerFormAddCardSubmit = (evt) => {
@@ -14,7 +17,13 @@ export class PopupFormCard extends Popup {
         evt.target.reset();
         const poupImage = document.querySelector('.popup_type_edite-card');
         poupImage.classList.remove('popup_open');
-        /*popupButton.classList.add('popup__button_disabled');
-        popupButton.setAttribute('disabled', 'disabled');*/ 
     }
+
+    openPopup = () => {
+        this.selectorElement.classList.add('popup_open');
+        this._setEventListners();
+        this.disableSubmitButton();
+        this._nameCard.value = '';
+        this._linkCard.value = '';
+    }    
 }

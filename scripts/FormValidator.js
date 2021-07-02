@@ -6,7 +6,6 @@ export default class FormValidator {
         this.errorElement = this.formElement.querySelector(`#${this.inputElement.id}-error`);
         this.inputList = Array.from(this.formElement.querySelectorAll (this.data.inputSelector));
         this.buttonElement = this.formElement.querySelector(this.data.submitButtonSelector);
-        
     }
     //показывает элемент ошибки
   _showInputError = () => {
@@ -31,11 +30,10 @@ export default class FormValidator {
 
   _changeButtonSwitch = () => {
     if (this._hasInvalidInput()) {
-      this.buttonElement.classList.add(this.data.inactiveButtonClass); 
-      this.buttonElement.setAttribute('disabled', true);
+      this.disableSubmitButton();
     } else {
       this.buttonElement.classList.remove(this.data.inactiveButtonClass);
-      this.buttonElement.removeAttribute('disabled');
+      this.buttonElement.disbaled = false;
     }
   }
 
@@ -72,4 +70,8 @@ export default class FormValidator {
     } else !this.inputElement.value.length > 0 ? this.errorElement.textContent = this.data.errorMessageNullInput : this.errorElement.textContent = this.inputElement.validationMessage;
   }
 
+  disableSubmitButton = () => {
+    this.buttonElement.classList.add(this.data.inactiveButtonClass);
+    this.buttonElement.disbaled = true;
+  } 
 }
