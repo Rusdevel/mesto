@@ -1,4 +1,4 @@
-export default class FormValidator {
+/*export default class FormValidator {
     constructor (data, formElement) {
         this.data = data;
         this.formElement = formElement;
@@ -74,4 +74,86 @@ export default class FormValidator {
     this.buttonElement.classList.add(this.data.inactiveButtonClass);
     this.buttonElement.disbaled = true;
   } 
+} */
+
+export default class FormValidator {
+  constructor (data, formElement) {
+    this.formElement = formElement;
+    this.data = data;
+    this.inputList = Array.from(this.formElement.querySelectorAll (this.data.inputSelector));
+    //для имени профиля
+    this.erroName = this.formElement.querySelector(this.data.nameInputError);
+    this.inputName = this.formElement.querySelector('.popup__input_type_name');
+    //для работы профиля
+    this.erroJob = this.formElement.querySelector(this.data.jobInputError);
+    this.inputJob = this.formElement.querySelector('.popup__input_type_job');
+
+    this.buttonElement = this.formElement.querySelector(this.data.submitButtonSelector);
+
+    this.inputElement = this.formElement.querySelector(this.data.inputSelector)
+    
+    
+  }
+//метод вывода ошибки на короткий ввод
+_shortTextErro = (element, erroText) => {
+  if(element.validity.valueMissing) {
+    // выводит сообщение об ошибке
+    erroText.textContent = this.data.errorMessageNullInput;
+   // делает ошибку видимой
+   erroText.classList.add(this.data.errorClass)
+   //добавляет красную строку под инпут
+   element.classList.add(this.data.inputErrorClass);
+   return false
+  }  else if (element.validity.tooShort || element.validity.tooLong) {
+    // выводит сообщение об ошибке
+    erroText.textContent = this.data.wrongLenght;
+   // делает ошибку видимой
+   erroText.classList.add(this.data.errorClass)
+   //добавляет красную строку под инпут
+   element.classList.add(this.data.inputErrorClass);
+   return false
+  }
+  
+  else {
+    erroText.textContent = '';
+    element.classList.remove(this.data.inputErrorClass);
+    erroText.classList.remove(this.data.errorClass);
+    return true
+  }
+}
+
+_hasInvalidInput = () => {
+   if(!this.inputName.validity.valid) {
+     return true
+   } else if(!this.inputJob.validity.valid) {
+     return true
+   }
+  
+};
+
+_changeButtonSwitch = () => {
+  if (this._hasInvalidInput()) {
+    this.buttonElement.classList.add(this.data.inactiveButtonClass);
+    this.buttonElement.disbaled = true;
+  } else {
+    this.buttonElement.classList.remove(this.data.inactiveButtonClass);
+      this.buttonElement.disbaled = false;
+  }
+}
+
+
+
+setEventListner = () => {
+  
+  this.inputName.addEventListener('input', () => {
+      this._shortTextErro(this.inputName, this.erroName);
+      this._changeButtonSwitch();
+  });
+  this.inputJob.addEventListener('input', () => {
+      this._shortTextErro(this.inputJob, this.erroJob);
+      this._changeButtonSwitch();
+  });
+  
+}
+
 }

@@ -23,7 +23,14 @@ export class PopupFormCard extends Popup {
         this.selectorElement.classList.add('popup_open');
         this._setEventListners();
         this.disableSubmitButton();
+        this._nameCard.textContent = '';
+        this._linkCard.textContent = '';
+    }    
+    _closePopup = () => {
+        this.selectorElement.classList.remove('popup_open');
+        //если удалить обработчик по закрытию на esc, то этот обработчик вообще перестает работать
+        document.removeEventListener('keydown', this._closePopupEsc);
         this._nameCard.value = '';
         this._linkCard.value = '';
-    }    
+}
 }

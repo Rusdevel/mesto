@@ -6,7 +6,6 @@ export default class Popup {
     }
     _setEventListners = () => {
         const closeBtn = this.selectorElement.querySelector('.popup__close');
-        const cardButtonProfile = document.querySelector('.profile__edit-button');
         document.addEventListener('keydown', this._closePopupEsc);
         document.addEventListener('click', this._closePopupsOverlay);
         closeBtn.addEventListener('click', this._closePopup);
@@ -14,7 +13,7 @@ export default class Popup {
     _closePopup = () => {
         this.selectorElement.classList.remove('popup_open');
         //если удалить обработчик по закрытию на esc, то этот обработчик вообще перестает работать
-        //document.removeEventListener('keydown', this._closePopupEsc);
+        document.removeEventListener('keydown', this._closePopupEsc);
     }
     _closePopupEsc = (evt) => {
         if (evt.key === 'Escape') {
