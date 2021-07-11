@@ -10,6 +10,7 @@ const profileButton = document.querySelector('.profile__button');
 const cardButton = document.querySelector('.profile__edit-button');
 const popupAddCard = document.querySelector('.popup_type_edite-card');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
+const formProfile = document.querySelector('.popup__form_profile');
 // Находим форму
 const formEditProfle = popupEditProfile.querySelector('.popup__form');
 // попап карточки
@@ -34,7 +35,7 @@ export function openCardPopup() {
   popupCard.openPopup();
 }
 // экземпляр класса валидации профиля
-const validatorForProfile = new FormValidator(enableValidation, popupEditProfile);
+const validatorForProfile = new FormValidator(enableValidation, formProfile);
 validatorForProfile.enebleValidation();
 
 //класс для работы с формой
@@ -47,7 +48,7 @@ cardButton.addEventListener('click', () => {popupFormCard.openPopup()
   validatorForCard.enebleValidation();
 });
 
-// экземпляр класса добавления карточек
+// экземпляр класса валидации карточек
 const poupImage = document.querySelector('.popup__form_add-form');
 const validatorForCard = new FormValidator(enableValidation, poupImage);
 

@@ -6,8 +6,8 @@ import { openCardPopup } from './index.js';
 
 export default class Card {
     constructor(data, cardSelector) {
-        this._name = data.nameCard;
-        this._link = data.url;
+        this._name = data.name;
+        this._link = data.description;
         this._cardSelector = cardSelector;
         this._like = '.place-card__like-img';
         this._trash = '.place-card__trash';

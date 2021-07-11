@@ -2,10 +2,10 @@ export default class FormValidator {
   constructor(data, formElement) {
     this.formElement = formElement;
     this.data = data;
-    this.errorName = this.formElement.querySelector('#errorName');
-    this.inputName = this.formElement.querySelector('#name');
-    this.inputDescription = this.formElement.querySelector('#description');
-    this.errorDescription = this.formElement.querySelector('#errorDescription');
+    this.errorName = this.formElement.querySelector('.popup__input-error-name');
+    this.inputName = this.formElement.name;
+    this.inputDescription = this.formElement.description;
+    this.errorDescription = this.formElement.querySelector('.popup__input-error-description');
     this.buttonElement = this.formElement.querySelector(this.data.submitButtonSelector);
   }
 
