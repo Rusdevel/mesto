@@ -22,7 +22,6 @@ export class PopupFormCard extends Popup {
     openPopup = () => {
         this.selectorElement.classList.add('popup_open');
         this._setEventListners();
-        this.disableSubmitButton();
         this._nameCard.textContent = '';
         this._linkCard.textContent = '';
     }    

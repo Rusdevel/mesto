@@ -14,9 +14,6 @@ export class PopupForProfile extends Popup {
     }
     _handleProfileFormSubmit = (evt) => {
     evt.preventDefault();
-        // Находим форму
-        // Находим поля формы в DOM 
-        
     this.profileName.textContent = this.nameInput.value;
     this.profileJob.textContent = this.jobInput.value;
         this.popupEditProfile.classList.remove('popup_open');

@@ -1,9 +1,8 @@
 // для просмотра фото
 const imagePopup = document.querySelector('.popup_type_image');
-const popupContainer = imagePopup.querySelector('.popup__container');
 const pupupImageCard = imagePopup.querySelector('.popup__image');
-const closeBtnpopupImage = imagePopup.querySelector('.popup__close');
 const popupImageTitle = imagePopup.querySelector('.popup__image-title');
+import { openCardPopup } from './index.js';
 
 export default class Card {
     constructor(data, cardSelector) {
@@ -30,7 +29,6 @@ export default class Card {
             .content
             .querySelector('.place-card')
             .cloneNode(true);
-
         // вернём DOM-элемент карточки
         return cardElement;
     }
@@ -41,11 +39,10 @@ export default class Card {
     _deleteCard(evt) {
     evt.target.closest('.place-card').remove();
 }
-
     _handleOpenPopup() {
         pupupImageCard.src = this._link;
         popupImageTitle.textContent = this._name;
-        imagePopup.classList.add('popup_open');
+        openCardPopup();
     }
 
     generateCard() {
@@ -58,7 +55,6 @@ export default class Card {
         this._element.querySelector('.place-card__image').alt = this._name;
         //слушатели событий
         this._setEventListners();
-        
         return this._element;
     }
 }

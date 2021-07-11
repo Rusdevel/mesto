@@ -28,10 +28,5 @@ export default class Popup {
     openPopup = () => {
         this.selectorElement.classList.add('popup_open');
         this._setEventListners();
-        this.disableSubmitButton();
     }
-    disableSubmitButton = () => {
-        this._popupButton.classList.add('popup__button_disabled');
-        this._popupButton.disbaled = true;
-      } 
 }
