@@ -1,6 +1,7 @@
 export default class Popup {
     constructor(selectorElement) {
         this.selectorElement = selectorElement;
+        //this.element = document.querySelector(selectorElement);
         this._popupAddCard = document.querySelector('.popup_type_edite-card');
         this._popupButton = this._popupAddCard.querySelector('.popup__button');
     }

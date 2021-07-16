@@ -54,3 +54,14 @@ validatorForCard.enebleValidation();
 //экземпляр класса профиля
 const popupProfile = new PopupForProfile(popupEditProfile, formEditProfle);
 profileButton.addEventListener('click', () => { popupProfile.openPopup() });
+
+/*
+// создание нового элеменита карточки. Где мы из массива берем ссылку, название картинки и альт.
+const section = new Section({
+  items: initialCards, renderer: (item) => {
+    const card = createCard(item);
+    section.addItem(card, 'append');
+  },
+}, '.cards');
+section.renderer();
+*/
