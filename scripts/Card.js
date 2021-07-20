@@ -5,11 +5,11 @@ const popupImageTitle = imagePopup.querySelector('.popup__image-title');
 import { openCardPopup } from './index.js';
 
 export default class Card {
-    constructor(data, cardSelector, {handleCardClick}) {
+    constructor(data, cardSelector, /*{handleCardClick}*/ ) {
         this._name = data.name;
         this._link = data.description;
         this._cardSelector = cardSelector;
-        this._openFullImage = handleCardClick;
+        //this._openFullImage = handleCardClick;
         this._like = '.place-card__like-img';
         this._trash = '.place-card__trash';
         this._image = '.place-card__image';
