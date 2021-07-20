@@ -20,7 +20,7 @@ export class PopupFormCard extends Popup {
 //сделать через super
     openPopup = () => {
         this.selectorElement.classList.add('popup_open');
-        this._setEventListners();
+        this.setEventListners();
         this._nameCard.value = '';
         this._linkCard.value = '';
     }    

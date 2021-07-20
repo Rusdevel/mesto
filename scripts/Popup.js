@@ -5,29 +5,29 @@ export default class Popup {
         this._popupAddCard = document.querySelector('.popup_type_edite-card');
         this._popupButton = this._popupAddCard.querySelector('.popup__button');
     }
-    _setEventListners = () => {
+    setEventListners = () => {
         const closeBtn = this.selectorElement.querySelector('.popup__close');
-        document.addEventListener('keydown', this._closePopupEsc);
+        document.addEventListener('keydown', this._handleEscClose);
         document.addEventListener('click', this._closePopupsOverlay);
-        closeBtn.addEventListener('click', this._closePopup);
+        closeBtn.addEventListener('click', this.close);
     }
-    _closePopup = () => {
+    close = () => {
         this.selectorElement.classList.remove('popup_open');
         //если удалить обработчик по закрытию на esc, то этот обработчик вообще перестает работать
-        document.removeEventListener('keydown', this._closePopupEsc);
+        document.removeEventListener('keydown', this._handleEscClose);
     }
-    _closePopupEsc = (evt) => {
+    _handleEscClose = (evt) => {
         if (evt.key === 'Escape') {
-            this._closePopup()
+            this.close()
         }
     }
     _closePopupsOverlay = (evt) => {
         if (evt.target.classList.contains('popup')) {
-            this._closePopup();
+            this.close();
         }
     }
     openPopup = () => {
         this.selectorElement.classList.add('popup_open');
-        this._setEventListners();
+        this.setEventListners();
     }
 }

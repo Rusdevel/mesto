@@ -22,6 +22,6 @@ export class PopupForProfile extends Popup {
         this.nameInput.value = this.profileName.textContent;
         this.jobInput.value = this.profileJob.textContent;
         this.selectorElement.classList.add('popup_open');
-        this._setEventListners();
+        this.setEventListners();
     }
 }

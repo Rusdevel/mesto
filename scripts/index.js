@@ -1,8 +1,8 @@
 import Card from './Card.js';
-import {enableValidation} from './validateConfig.js';
+import {enableValidation} from './utils/validateConfig.js';
 import Popup from './Popup.js';
 import { PopupFormCard } from './popupFormCard.js';
-import { initialCards } from '../scripts/initialCards.js';
+import { initialCards } from './utils/initialCards.js';
 import { PopupForProfile } from './popupProfile.js';
 import FormValidator  from './FormValidator.js';
 const profileButton = document.querySelector('.profile__button'); 
