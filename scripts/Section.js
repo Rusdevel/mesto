@@ -1,8 +1,7 @@
-import Card from "./Card";
 export default class Section {
     constructor({ items, renderer }, containerSelector) {
         this._renderedItems = items;
-        this._container = document.querySelector(containerSelector);
+        this._container = containerSelector;
         this._renderer = renderer;
     }
 

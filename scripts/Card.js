@@ -53,7 +53,7 @@ export default class Card {
         this._element.querySelector('.place-card__title').textContent = this._name;
         this._element.querySelector('.place-card__image').alt = this._name;
         //слушатели событий
-        this._setEventListners();
+        //this._setEventListners();
         return this._element;
     }
 }
