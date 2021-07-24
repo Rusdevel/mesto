@@ -2,7 +2,7 @@
 const imagePopup = document.querySelector('.popup_type_image');
 const pupupImageCard = imagePopup.querySelector('.popup__image');
 const popupImageTitle = imagePopup.querySelector('.popup__image-title');
-import { openCardPopup } from './index.js';
+//import { openCardPopup } from './index.js';
 
 export default class Card {
     constructor(data, cardSelector, /*{handleCardClick}*/ ) {
