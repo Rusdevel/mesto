@@ -10,7 +10,7 @@ import { UserInfo } from './UserInfo.js';
 import PopupWithForm from './PopupWithForm.js';
 const profileButton = document.querySelector('.profile__button'); 
 const cardButton = document.querySelector('.profile__edit-button');
-const popupAddCard = document.querySelector('.popup_type_edite-card');
+const popupAddCard = '.popup_type_edite-card';
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const formProfile = document.querySelector('.popup__form_profile');
 // Находим форму
@@ -45,7 +45,7 @@ initialCards.forEach((item) => {
 });*/
 
 
-/* Переменая для текста работы куда будет добавляться новый текст */
+// Переменая для текста работы куда будет добавляться новый текст 
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const userInfo = new UserInfo(profileName, profileJob);
@@ -61,12 +61,25 @@ function openProfilePopup() {
 }
 
 
-const popupProfile = new PopupWithForm(popupEditProfile, {
-  handlerSubmit: (options) => {
-    userInfo.setUserInfo(options);
+const popupProfile = new PopupWithForm('.popup_type_edit-profile', {
+  handlerSubmit: (data) => {
+    userInfo.setUserInfo(data);
     popupProfile.close();
   }
 });
+
+const popupAddCards = new PopupWithForm(popupAddCard, {
+  handlerSubmit: (data) => {
+    createCard(data);
+    placeList.prepend(createCard(data));
+    popupAddCards.close();
+  }
+});
+
+
+profileButton.addEventListener('click', openProfilePopup);
+cardButton.addEventListener('click', () => {popupAddCards.open()});
+
 
 
 
@@ -81,7 +94,7 @@ export function openCardPopup() {
 // экземпляр класса валидации профиля
 const validatorForProfile = new FormValidator(enableValidation, formProfile);
 validatorForProfile.enebleValidation();
-
+/*
 //класс для работы с формой
 const popupFormCard = new PopupFormCard(popupAddCard, '.popup__form_add-form', (data) => {
     createCard(data);
@@ -89,7 +102,7 @@ const popupFormCard = new PopupFormCard(popupAddCard, '.popup__form_add-form', (
 });
 //слушатель на эткрытие формы карточки и блокировки сабмита
 cardButton.addEventListener('click', () => {popupFormCard.openPopup()
-});
+});*/
 
 // экземпляр класса валидации карточек
 const poupImage = document.querySelector('.popup__form_add-form');
