@@ -18,7 +18,7 @@ export default class Card {
     _setEventListners() {
         this._element.querySelector(this._like).addEventListener('click', this._likeCard);
         this._element.querySelector(this._trash).addEventListener('click', this._deleteCard);
-        this._element.querySelector(this._image).addEventListener('click', () => this._openFullImage(this._name,this._link));
+        //this._element.querySelector(this._image).addEventListener('click', () => this._openFullImage(this._name,this._link));
     }
 
     _getTemplateCard() {
@@ -53,7 +53,7 @@ export default class Card {
         this._element.querySelector('.place-card__title').textContent = this._name;
         this._element.querySelector('.place-card__image').alt = this._name;
         //слушатели событий
-        //this._setEventListners();
+        this._setEventListners();
         return this._element;
     }
 }

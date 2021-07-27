@@ -10,8 +10,8 @@ export class UserInfo {
       return {name, jobName};
     };
 
-    setUserInfo(options) {
-      this._name.textContent = options.name;
-      this._jobName.textContent = options.job;
+    setUserInfo(data) {
+      this._name.textContent = data.name;
+      this._jobName.textContent = data.description;
     };
 }

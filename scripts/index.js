@@ -63,8 +63,9 @@ function openProfilePopup() {
 
 const popupProfile = new PopupWithForm('.popup_type_edit-profile', {
   handlerSubmit: (data) => {
-    userInfo.setUserInfo(data);
+    userInfo.setUserInfo(popupProfile._getInputValues());
     popupProfile.close();
+    
   }
 });
 
@@ -72,6 +73,7 @@ const popupAddCards = new PopupWithForm(popupAddCard, {
   handlerSubmit: (data) => {
     createCard(data);
     placeList.prepend(createCard(data));
+    console.log(popupAddCards._getInputValues());
     popupAddCards.close();
   }
 });
