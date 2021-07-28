@@ -1,13 +1,11 @@
-import Card from './Card.js';
+import Card from './components/Card.js';
 import {enableValidation} from './utils/validateConfig.js';
-import Popup from './Popup.js';
-import { PopupFormCard } from './popupFormCard.js';
 import { initialCards } from './utils/initialCards.js';
-//import { PopupForProfile } from './popupProfile.js';
-import FormValidator  from './FormValidator.js';
-import Section from './Section.js';
-import { UserInfo } from './UserInfo.js';
-import PopupWithForm from './PopupWithForm.js';
+import FormValidator  from './components/FormValidator.js';
+import Section from './components/Section.js';
+import { UserInfo } from './components/UserInfo.js';
+import PopupWithForm from './components/PopupWithForm.js';
+import PopupWithImage from './components/PopupWithImage.js';
 const profileButton = document.querySelector('.profile__button'); 
 const cardButton = document.querySelector('.profile__edit-button');
 const popupAddCard = '.popup_type_edite-card';
@@ -19,14 +17,15 @@ const formEditProfle = popupEditProfile.querySelector('.popup__form');
 const imagePopup = document.querySelector('.popup_type_image');
  // элемент списка карточек
 const placeList = document.querySelector('.places-list');
-
 const nameInput = formEditProfle.querySelector('.popup__input_type_name');
 const jobInput = formEditProfle.querySelector('.popup__input_type_job');
-
-
+//эксземпляр класса попапа карточки
+const popupWithImage = new PopupWithImage('.popup_type_image');
 //создаем новый экземпляр карточки
  const createCard = (item) => {
-    const card = new Card(item, '#templateCard');
+   const card = new Card(item, '#templateCard', () => {
+     popupWithImage.open(item);
+   } );
     return card.generateCard();
   } 
 
@@ -38,82 +37,43 @@ const section = new Section({
   },
 }, placeList);
 section.renderer();
-/*//перебираем массив карточек
-initialCards.forEach((item) => {
-    // Добавляем в DOM
-    placeList.append(createCard(item));
-});*/
-
 
 // Переменая для текста работы куда будет добавляться новый текст 
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const userInfo = new UserInfo(profileName, profileJob);
 
-
 //Функция открытия попапа редактирования
 function openProfilePopup() {
-
   const getProfileData = userInfo.getUserInfo();
   nameInput.value = getProfileData.name;
   jobInput.value = getProfileData.jobName;
   popupProfile.open();
 }
-
-
+//настройки формы профиля
 const popupProfile = new PopupWithForm('.popup_type_edit-profile', {
-  handlerSubmit: (data) => {
+  handlerSubmit: () => {
     userInfo.setUserInfo(popupProfile._getInputValues());
     popupProfile.close();
-    
   }
 });
-
+//настройка формы добаления карточки
 const popupAddCards = new PopupWithForm(popupAddCard, {
   handlerSubmit: (data) => {
     createCard(data);
     placeList.prepend(createCard(data));
-    console.log(popupAddCards._getInputValues());
     popupAddCards.close();
   }
 });
 
-
 profileButton.addEventListener('click', openProfilePopup);
 cardButton.addEventListener('click', () => {popupAddCards.open()});
 
-
-
-
-
-/*
-//создаем экземпляр класса попапа карточек
-const popupCard = new Popup(imagePopup);
-//создаем функцию для вызова открытия попапа карточки
-export function openCardPopup() {
-  popupCard.openPopup();
-}*/
 // экземпляр класса валидации профиля
 const validatorForProfile = new FormValidator(enableValidation, formProfile);
 validatorForProfile.enebleValidation();
-/*
-//класс для работы с формой
-const popupFormCard = new PopupFormCard(popupAddCard, '.popup__form_add-form', (data) => {
-    createCard(data);
-    placeList.prepend(createCard(data));
-});
-//слушатель на эткрытие формы карточки и блокировки сабмита
-cardButton.addEventListener('click', () => {popupFormCard.openPopup()
-});*/
 
 // экземпляр класса валидации карточек
 const poupImage = document.querySelector('.popup__form_add-form');
 const validatorForCard = new FormValidator(enableValidation, poupImage);
 validatorForCard.enebleValidation();
-/*
-//экземпляр класса профиля
-const popupProfile = new PopupForProfile(popupEditProfile, formEditProfle);
-profileButton.addEventListener('click', () => { popupProfile.openPopup() });
-*/
-
-

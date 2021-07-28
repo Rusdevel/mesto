@@ -13,7 +13,6 @@ export default class Popup {
 
     close() {
         this.element.classList.remove('popup_open');
-        //если удалить обработчик по закрытию на esc, то этот обработчик вообще перестает работать
         document.removeEventListener("keydown", this._handleEscClose);
     }
     _handleEscClose = (evt) => {
