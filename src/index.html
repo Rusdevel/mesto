@@ -5,18 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
-    <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body>
     <div class="page">
         <header class="header">
-            <img class="header__logo" src="./images/header-logo.svg" alt="Логотип">
+            <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="Логотип">
         </header>
 
         <main class="content">
         <section class="section profile">
-            <img class="profile__avatar" src="./images/avatar.jpg" alt="Аватар">
+            <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар">
             <div class="profile__section">
                 <div class="profile__date">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -31,7 +30,7 @@
             <template id="templateCard">
                 <div class="place-card">
                     <button class="place-card__trash" type="button"></button>
-                    <img src="./images/kirill-pershin-1088404-unsplash.jpg" class="place-card__image" alt="фото">
+                    <img src="<%=require('./images/kirill-pershin-1088404-unsplash.jpg')%>" class="place-card__image" alt="фото">
                     <div class="place-card__description">
                         <h2 class="place-card__title">Карачаево-Черкессия</h2>
                         <button class="place-card__like-img" type="button"></button>
@@ -78,7 +77,7 @@
         <div class="popup popup_type_image">
             <div class="popup__container">
                 <button class="popup__close" type="button"></button>
-                <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg" alt="фото">
+                <img class="popup__image" src='https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg' alt="фото">
                 <h2 class="popup__image-title"></h2>
 
             </div>
@@ -92,8 +91,6 @@
         </footer>
 
     </div>
-    <script  type = 'module' src="./scripts/utils/initialCards.js"></script>
-    <script  type = 'module' src="./scripts/index.js"></script>
     
 </body>
 

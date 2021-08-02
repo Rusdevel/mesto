@@ -1,11 +1,12 @@
-import Card from './components/Card.js';
-import {enableValidation} from './utils/validateConfig.js';
-import { initialCards } from './utils/initialCards.js';
-import FormValidator  from './components/FormValidator.js';
-import Section from './components/Section.js';
-import { UserInfo } from './components/UserInfo.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import PopupWithImage from './components/PopupWithImage.js';
+import './pages/index.css'
+import Card from './scripts/components/Card.js';
+import {enableValidation} from './scripts/utils/validateConfig.js';
+import { initialCards } from './scripts/utils/initialCards.js';
+import FormValidator  from './scripts/components/FormValidator.js';
+import Section from './scripts/components/Section.js';
+import { UserInfo } from './scripts/components/UserInfo.js';
+import PopupWithForm from './scripts/components/PopupWithForm.js';
+import PopupWithImage from './scripts/components/PopupWithImage.js';
 const profileButton = document.querySelector('.profile__button'); 
 const cardButton = document.querySelector('.profile__edit-button');
 const popupAddCard = '.popup_type_edite-card';
@@ -60,7 +61,8 @@ const popupProfile = new PopupWithForm('.popup_type_edit-profile', {
 //настройка формы добаления карточки
 const popupAddCards = new PopupWithForm(popupAddCard, {
   handlerSubmit: (data) => {
-    createCard(data);
+    console.log(createCard(data));
+    //createCard(data);
     placeList.prepend(createCard(data));
     popupAddCards.close();
   }
