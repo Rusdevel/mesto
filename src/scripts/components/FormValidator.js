@@ -7,36 +7,62 @@ export default class FormValidator {
   }
 
   _shortTextError = (element) => {
-    const erroText = this.formElement.querySelector(`#${element.id}-error`);
+    this.erroText = this.formElement.querySelector(`#${element.id}-error`);
     if (element.validity.valueMissing) {
       // выводит сообщение об ошибке
-      erroText.textContent = this.data.errorMessageNullInput;
+      this.erroText.textContent = this.data.errorMessageNullInput;
       // делает ошибку видимой
-      erroText.classList.add(this.data.errorClass)
+      this.erroText.classList.add(this.data.errorClass)
       //добавляет красную строку под инпут
       element.classList.add(this.data.inputErrorClass);
       return false
     } else if (element.validity.tooShort || element.validity.tooLong) {
       // выводит сообщение об ошибке
-      erroText.textContent = this.data.wrongLenght;
+      this.erroText.textContent = this.data.wrongLenght;
       // делает ошибку видимой
-      erroText.classList.add(this.data.errorClass)
+      this.erroText.classList.add(this.data.errorClass)
       //добавляет красную строку под инпут
       element.classList.add(this.data.inputErrorClass);
       return false
       //проверяет введен ли адрес сайта
     } else if (element.type == 'url' && !element.validity.valid) {
-      erroText.textContent = this.data.errorMessageNullLink;
+      this.erroText.textContent = this.data.errorMessageNullLink;
       element.classList.add(this.data.inputErrorClass);
-      erroText.classList.add(this.data.errorClass)
+      this.erroText.classList.add(this.data.errorClass)
       return false
     }
     else {
-      erroText.textContent = '';
-      erroText.classList.remove(this.data.errorClass);
+      this.erroText.textContent = '';
+      this.erroText.classList.remove(this.data.errorClass);
       element.classList.remove(this.data.inputErrorClass);
     }
   }
+//сбрасываем валидацию
+  resetValidation = () => {
+    this.inputList.forEach((item) => {
+      //убираем результаты валидации
+      let erroText = this.formElement.querySelector(`#${item.id}-error`);
+      erroText.textContent = '';
+      erroText.classList.remove(this.data.errorClass);
+      item.classList.remove(this.data.inputErrorClass);
+      //блокируем сабмит
+      this._disableSubmitButton();
+    })
+  }
+  /*если удалить имя в профиле и выйти(без сабмита), а потом снова зайти, то имя будет старое,однако высветится ошибка и кнопка будет не активна,
+  что бы это избежать создам метод resetValidationFromProfile*/
+  resetValidationFromProfile = () => {
+    this.inputList.forEach((item) => {
+      let erroText = this.formElement.querySelector(`#${item.id}-error`);
+      //убираем результаты валидации
+      erroText.textContent = '';
+      erroText.classList.remove(this.data.errorClass);
+      item.classList.remove(this.data.inputErrorClass);
+      //оставляем сабмит активным
+      this.buttonElement.classList.remove(this.data.inactiveButtonClass);
+      this.buttonElement.disabled = false;
+  })
+}
 
   _hasInvalidInput = () => {
     return this.inputList.some((item) => { 
@@ -55,7 +81,6 @@ export default class FormValidator {
 
   enebleValidation = () => {
     this.inputList.forEach((item) => {
-      this._disableSubmitUrl(item);
       item.addEventListener('input', () => {
       this._shortTextError(item);
       this._changeButtonSwitch();
@@ -68,10 +93,5 @@ export default class FormValidator {
     this.buttonElement.classList.add(this.data.inactiveButtonClass);
     this.buttonElement.disabled = true;
   }
-  //блокировка при открытии если это форма с карточками
-  _disableSubmitUrl = (element) => {
-    if (element.type == 'url') {
-      this._disableSubmitButton();
-    }
-  }
+  
 }

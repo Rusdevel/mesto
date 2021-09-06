@@ -55,7 +55,7 @@ function openProfilePopup() {
 //настройки формы профиля
 const popupProfile = new PopupWithForm('.popup_type_edit-profile', {
   handlerSubmit: (data) => {
-    userInfo.setUserInfo(popupProfile._getInputValues(data));
+    userInfo.setUserInfo(data);
     popupProfile.close();
   }
 });
@@ -68,9 +68,16 @@ const popupAddCards = new PopupWithForm(popupAddCard, {
   }
 });
 popupAddCards.setEventListeners();
-
-profileButton.addEventListener('click', openProfilePopup);
-cardButton.addEventListener('click', () => {popupAddCards.open()});
+//слушатель при нажатии на создание профиля
+profileButton.addEventListener('click', () => {
+  validatorForProfile.resetValidationFromProfile()
+ openProfilePopup()
+});
+// слушатель при нажатии на создание новой картинки
+cardButton.addEventListener('click', () => {
+  validatorForCard.resetValidation()
+  popupAddCards.open()
+});
 
 // экземпляр класса валидации профиля
 const validatorForProfile = new FormValidator(enableValidation, formProfile);
