@@ -22,6 +22,7 @@ const nameInput = formEditProfle.querySelector('.popup__input_type_name');
 const jobInput = formEditProfle.querySelector('.popup__input_type_job');
 //эксземпляр класса попапа карточки
 const popupWithImage = new PopupWithImage('.popup_type_image');
+popupWithImage.setEventListeners();
 //создаем новый экземпляр карточки
  const createCard = (item) => {
    const card = new Card(item, '#templateCard', () => {
@@ -53,20 +54,20 @@ function openProfilePopup() {
 }
 //настройки формы профиля
 const popupProfile = new PopupWithForm('.popup_type_edit-profile', {
-  handlerSubmit: () => {
-    userInfo.setUserInfo(popupProfile._getInputValues());
+  handlerSubmit: (data) => {
+    userInfo.setUserInfo(popupProfile._getInputValues(data));
     popupProfile.close();
   }
 });
+popupProfile.setEventListeners();
 //настройка формы добаления карточки
 const popupAddCards = new PopupWithForm(popupAddCard, {
   handlerSubmit: (data) => {
-    console.log(createCard(data));
-    //createCard(data);
     placeList.prepend(createCard(data));
     popupAddCards.close();
   }
 });
+popupAddCards.setEventListeners();
 
 profileButton.addEventListener('click', openProfilePopup);
 cardButton.addEventListener('click', () => {popupAddCards.open()});
