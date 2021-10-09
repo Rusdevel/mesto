@@ -3,11 +3,13 @@ const imagePopup = document.querySelector('.popup_type_image');
 const pupupImageCard = imagePopup.querySelector('.popup__image');
 const popupImageTitle = imagePopup.querySelector('.popup__image-title');
 //import { openCardPopup } from './index.js';
+import getLikes from '../../index.js'
 
 export default class Card {
     constructor(data, cardSelector, handleCardClick ) {
         this._name = data.name;
-        this._link = data.description;
+        this._link = data.link;
+        this._likes = data.likes.length;
         this._cardSelector = cardSelector;
         this._openFullImage = handleCardClick;
         this._like = '.place-card__like-img';
@@ -35,6 +37,11 @@ export default class Card {
     _likeCard(evt) {
     evt.target.classList.toggle('place-card__like-img_active');
 }
+// обновление количества лайков
+    updateLikeCount() {
+        //this._element.querySelector('.place-card__like-info').textContent = getLikes(likes);
+    }
+
     _deleteCard(evt) {
     evt.target.closest('.place-card').remove();
 }
@@ -52,8 +59,10 @@ export default class Card {
         this._element.querySelector('.place-card__image').src = this._link;
         this._element.querySelector('.place-card__title').textContent = this._name;
         this._element.querySelector('.place-card__image').alt = this._name;
+        this._element.querySelector('.place-card__like-info').textContent = this._likes;
         //слушатели событий
         this._setEventListners();
+        //this.updateLikeCount();
         return this._element;
     }
 }

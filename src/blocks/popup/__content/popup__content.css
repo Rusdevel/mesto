@@ -1,6 +1,6 @@
 .popup__content {
     width: 282px;
-    height: 322px;
+    min-height: 181px;
     background-color: #fff;
     border-radius: 10px;
     position: relative;
@@ -11,7 +11,7 @@
 @media (min-width: 1000px) {
     .popup__content {
         width: 430px;
-        min-height: 330px;
+        min-height: 181px;
         padding: 30px 36px;  
     }
 

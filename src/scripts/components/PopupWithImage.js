@@ -8,7 +8,7 @@ export default class PopupWithImage extends Popup {
     }
 
     open(date) {
-        this._pupupImageCard.src = date.description;
+        this._pupupImageCard.src = date.link;
         this._pupupImageCard.alt = date.name;
         this._popupImageTitle.textContent = date.name;
         super.open();
