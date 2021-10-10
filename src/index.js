@@ -9,7 +9,9 @@ import PopupWithForm from './scripts/components/PopupWithForm.js';
 import PopupWithImage from './scripts/components/PopupWithImage.js';
 import Api from './scripts/components/Api.js';
 import { cohortId, headers } from './scripts/components/Api.js';
-
+import PopupDelete from './scripts/components/PopupDelete';
+//import PopupDelete from './scripts/components/PopupDelete';
+const avatar = document.querySelector('.profile__avatar');
 const profileButton = document.querySelector('.profile__button'); 
 const cardButton = document.querySelector('.profile__edit-button');
 const popupAddCard = '.popup_type_edite-card';
@@ -74,6 +76,27 @@ const popupAddCards = new PopupWithForm(popupAddCard, {
   }
 });
 popupAddCards.setEventListeners();
+
+//обновление аватара
+const popupUpdateAvatar = new PopupWithForm('.popup_type_update-avatar', {
+  handlerSubmit: (data) => {
+//avatar.src
+const avatarObject = popupUpdateAvatar._getInputValues();
+    avatar.src = avatarObject.link;
+    console.log(popupUpdateAvatar._getInputValues());
+    //getNewCards(data.name, data.link)
+    //placeList.prepend(/*сделать функцию обновления аватараcreateCard(data)*/);
+    popupUpdateAvatar.close();
+  }
+});
+popupUpdateAvatar.setEventListeners();
+
+
+//удаление карточки
+const popupDelete = new PopupDelete('.popup_type_delete-card');
+popupDelete.setEventListeners();
+
+
 //слушатель при нажатии на создание профиля
 profileButton.addEventListener('click', () => {
   validatorForProfile.resetValidationFromProfile()
@@ -84,6 +107,8 @@ cardButton.addEventListener('click', () => {
   validatorForCard.resetValidation()
   popupAddCards.open()
 });
+
+
 
 // экземпляр класса валидации профиля
 const validatorForProfile = new FormValidator(enableValidation, formProfile);
