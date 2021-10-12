@@ -1,25 +1,46 @@
+
 // для просмотра фото
 const imagePopup = document.querySelector('.popup_type_image');
 const pupupImageCard = imagePopup.querySelector('.popup__image');
 const popupImageTitle = imagePopup.querySelector('.popup__image-title');
-//import { openCardPopup } from './index.js';
-import getLikes from '../../index.js'
+import popupDelete from '../../pages/../index.js';
 
 export default class Card {
-    constructor(data, cardSelector, handleCardClick ) {
-        this._name = data.name;
-        this._link = data.link;
-        this._likes = data.likes.length;
+    constructor({ name, link, owner, _id, likes }, {
+        handleCardClick,
+        handleCardDislike,
+        handleCardLike, handleCardDelete,
+    }, cardSelector, userId) {
+        this._name = name;
+        this._link = link;
+        this._likes = likes
+        this._owner = owner._id;
+        this._id = _id;
+        this._userId = userId;
         this._cardSelector = cardSelector;
         this._openFullImage = handleCardClick;
         this._like = '.place-card__like-img';
         this._trash = '.place-card__trash';
         this._image = '.place-card__image';
+        this._handleCardDislike = handleCardDislike;
+        this._handleCardLike = handleCardLike;
+        this._handleCardDelete = handleCardDelete;
+        this._element = this._getTemplateCard();
+        this._cardLikeElement = this._element.querySelector(this._like);
+        
     }
 
     _setEventListners() {
-        this._element.querySelector(this._like).addEventListener('click', this._likeCard);
-        this._element.querySelector(this._trash).addEventListener('click', this._deleteCard);
+        this._element.querySelector(this._like).addEventListener('click', ()=> {
+            const trigger = this._element.querySelector(this._like).classList.contains('.place-card__trash_active');
+        if(trigger) {
+            this._dislikeCard();
+        } else {
+            this._likeCard();
+        }
+        });
+        
+        //this._element.querySelector(this._trash).addEventListener('click', this._deleteCard);
         this._element.querySelector(this._image).addEventListener('click', () => this._openFullImage(this._name,this._link));
     }
 
@@ -34,35 +55,62 @@ export default class Card {
         return cardElement;
     }
 
-    _likeCard(evt) {
-    evt.target.classList.toggle('place-card__like-img_active');
+    _likeCard() {
+        this._handleCardLike(this._id);
+        this._element.querySelector(this._like).classList.toggle('place-card__like-img_active');
 }
+
+    _dislikeCard() {
+        this._handleCardDislike(this._id);
+        this._element.querySelector(this._like).classList.toggle('place-card__like-img_active');
+    }
 // обновление количества лайков
     updateLikeCount() {
-        //this._element.querySelector('.place-card__like-info').textContent = getLikes(likes);
+        this._element.querySelector('.place-card__like-info').textContent = this._likes.length;
     }
 
-    _deleteCard(evt) {
+   /* _deleteCard(evt) {
     evt.target.closest('.place-card').remove();
-}
+}*/
     _handleOpenPopup() {
         pupupImageCard.src = this._link;
         popupImageTitle.textContent = this._name;
         openCardPopup();
     }
 
+    _deleteCard() {
+        this._handleCardDelete(this._id, this._element);
+    }
+
     generateCard() {
+        //слушатели событий
+        this._setEventListners();
         // Запишем разметку в приватное поле _element. 
         // Так у других элементов появится доступ к ней.
-        this._element = this._getTemplateCard();
+        //this._element = this._getTemplateCard();
+        this.updateLikeCount();
         // создаем карточки с фото
         this._element.querySelector('.place-card__image').src = this._link;
         this._element.querySelector('.place-card__title').textContent = this._name;
         this._element.querySelector('.place-card__image').alt = this._name;
-        this._element.querySelector('.place-card__like-info').textContent = this._likes;
-        //слушатели событий
-        this._setEventListners();
-        //this.updateLikeCount();
+        
+
+        if (this._userId === this._owner) {
+            this._element.querySelector(this._trash).classList.add('place-card__trash_active');
+            //console.log(this._userId)
+        //console.log(this._owner);
+        }
+
+        this._likes.forEach((like) => {
+            if (like._id === this._userId) {
+            this._element.querySelector(this._like).classList.toggle('place-card__like-img_active');
+            
+                return;
+            }
+        })
+
+        
+        this.updateLikeCount();
         return this._element;
     }
-}
+} 

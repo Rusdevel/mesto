@@ -11,6 +11,7 @@ background-image: url(../../../images/trash.svg);
   background-repeat: no-repeat;
   background-color: transparent;
   transition: opacity 0.9s;
+  visibility: hidden;
 }
 
 .place-card__trash:hover {
