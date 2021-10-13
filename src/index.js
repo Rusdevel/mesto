@@ -105,6 +105,7 @@ popupDelete.setEventListeners();
 
 
 
+
 //эксземпляр класса попапа карточки
 const popupWithImage = new PopupWithImage('.popup_type_image');
 popupWithImage.setEventListeners();
