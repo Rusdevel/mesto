@@ -1,3 +1,5 @@
+import Popup from "./Popup";
+
 //Идентификатор группы
 export const cohortId = 'cohort-28';
 //Токен
@@ -6,6 +8,7 @@ export const headers = {
         authorization: 'f77a7956-a5a9-4ad6-a04a-920b557c7dfd',
     }
 }
+
 export default  class Api {
     constructor(options) {
         this._headers = options.headers;
@@ -39,6 +42,9 @@ export default  class Api {
              })
          })
              .then(this._checkRes)
+         /*.finally(() => {
+            Popup.close();
+        })*/
      }
 //обновление аватарки
     updateAvatar(link) {
@@ -50,6 +56,9 @@ export default  class Api {
             })
         })
             .then(this._checkRes)
+        /*.finally(() => {
+            Popup.close();
+        })*/
     }
 //отправляем карточки
     getNewCards(name, link) {
@@ -62,6 +71,9 @@ export default  class Api {
             })
         })
             .then(this._checkRes)
+            /*.finally(() => {
+                Popup.close();
+            })*/
     }
 
     //удаление карточки

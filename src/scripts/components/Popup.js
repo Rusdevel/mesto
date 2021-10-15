@@ -3,6 +3,7 @@ export default class Popup {
         this.selectorElement = selectorElement;
         this.element = document.querySelector(this.selectorElement);
         this._handleEscClose = this._handleEscClose.bind(this);
+        this._submitButton = this.element.querySelector('.popup__button');
     }
     setEventListeners () {
         const closeBtn = this.element.querySelector('.popup__close');
@@ -30,5 +31,15 @@ export default class Popup {
     open() {
         this.element.classList.add('popup_open');
         document.addEventListener("keydown", this._handleEscClose);
+    }
+
+    renderLoading = (isLoading) => {
+        if(isLoading) {
+            this._submitButton.textContent = 'Сохранение...';
+        } else {
+            this._submitButton.textContent = 'Сохранить';
+        }
+        
+
     }
 }

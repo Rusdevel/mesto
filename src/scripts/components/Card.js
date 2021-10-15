@@ -32,7 +32,7 @@ export default class Card {
 
     _setEventListners() {
         this._element.querySelector(this._like).addEventListener('click', ()=> {
-            const trigger = this._element.querySelector(this._like).classList.contains('.place-card__trash_active');
+            const trigger = this._element.querySelector(this._like).classList.contains('place-card__like-img_active');
         if(trigger) {
             this._dislikeCard();
         } else {
@@ -40,7 +40,7 @@ export default class Card {
         }
         });
         
-        //this._element.querySelector(this._trash).addEventListener('click', this._deleteCard);
+        this._element.querySelector(this._trash).addEventListener('click', () => this._handleCardDelete(this._id, this._element));
         this._element.querySelector(this._image).addEventListener('click', () => this._openFullImage(this._name,this._link));
     }
 
@@ -61,6 +61,7 @@ export default class Card {
 }
 
     _dislikeCard() {
+        
         this._handleCardDislike(this._id);
         this._element.querySelector(this._like).classList.toggle('place-card__like-img_active');
     }
@@ -77,11 +78,12 @@ export default class Card {
         popupImageTitle.textContent = this._name;
         openCardPopup();
     }
-
-    _deleteCard() {
+/*
+    _deleteCard(evt) {
+       // evt.target.closest('.place-card').remove();
         this._handleCardDelete(this._id, this._element);
     }
-
+*/
     generateCard() {
         //слушатели событий
         this._setEventListners();
@@ -109,8 +111,6 @@ export default class Card {
             }
         })
 
-        
-        this.updateLikeCount();
         return this._element;
     }
 } 
