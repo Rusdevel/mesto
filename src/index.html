@@ -1,131 +1,220 @@
 <!DOCTYPE html>
 <html lang="ru">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mesto</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="page">
-        <header class="header">
-            <img class="header__logo" src="<%=require('./images/header-logo.svg')%>" alt="Логотип">
-        </header>
+      <header class="header">
+        <img
+          class="header__logo"
+          src="<%=require('./images/header-logo.svg')%>"
+          alt="Логотип"
+        />
+      </header>
 
-        <main class="content">
+      <main class="content">
         <section class="section profile">
-            <div class="profile__avatar-block">
-                <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="Аватар">
-                <div class="profile__avatar-button"></div>
+          <div class="profile__avatar-block">
+            <img
+              class="profile__avatar"
+              src="<%=require('./images/avatar.jpg')%>"
+              alt="Аватар"
+            />
+            <div class="profile__avatar-button"></div>
+          </div>
+
+          <div class="profile__section">
+            <div class="profile__date">
+              <h1 class="profile__name"></h1>
+              <button type="button" class="button profile__button"></button>
+              <p class="profile__job"></p>
             </div>
-            
-            
-            <div class="profile__section">
-                <div class="profile__date">
-                    <h1 class="profile__name"></h1>
-                    <button type="button" class="button profile__button"></button>
-                    <p class="profile__job"></p>
-                </div>
-                <button type="button" class="button profile__edit-button"></button>
-            </div>
+            <button type="button" class="button profile__edit-button"></button>
+          </div>
         </section>
 
         <section class="places-list section">
-            <template id="templateCard">
-                <div class="place-card">
-                    <button class="place-card__trash" type="button"></button>
-                    <img src="<%=require('./images/kirill-pershin-1088404-unsplash.jpg')%>" class="place-card__image" alt="фото">
-                    <div class="place-card__description">
-                        <h2 class="place-card__title">Карачаево-Черкессия</h2>
-                        <div class="place-card__like-section">
-                            <button class="place-card__like-img" type="button"></button>
-                            <span class="place-card__like-info">1</span>
-                        </div>
-                        
-                    </div>
+          <template id="templateCard">
+            <div class="place-card">
+              <button class="place-card__trash" type="button"></button>
+              <img
+                src="<%=require('./images/kirill-pershin-1088404-unsplash.jpg')%>"
+                class="place-card__image"
+                alt="фото"
+              />
+              <div class="place-card__description">
+                <h2 class="place-card__title">Карачаево-Черкессия</h2>
+                <div class="place-card__like-section">
+                  <button class="place-card__like-img" type="button"></button>
+                  <span class="place-card__like-info">1</span>
                 </div>
-            </template>
-           
+              </div>
+            </div>
+          </template>
         </section>
 
-       
-            <div class="popup popup_type_edit-profile">
-                <div class="popup__content">
-                    <button class="popup__close" type="button"></button>
-                    <h2 class="popup__title">Редактировать профиль</h2>
-                    <form name = 'profileForm' class="popup__form popup__form_profile"  novalidate>
-                        <input type="text"  id = "nameProfile" name="name" minlength="2" maxlength="40" class="popup__input popup__input_type_name" placeholder="Имя" required>
-                        <span class="popup__input-error popup__input-error-name"  name="errorName" id="nameProfile-error"></span>
-                        <input type="text" name="description" id="descriptionProfile" minlength="2" maxlength="200" class="popup__input popup__input_type_job" placeholder="О себе" required>
-                        <span class="popup__input-error popup__input-error-description" id="descriptionProfile-error"  name="errorDescription"></span>
-                        <button class="button popup__button" type="submit">Сохранить</button>
-                    </form>
-                </div>
-            </div>
-        
-        
-        
-            <div class="popup popup_type_edite-card">
-                <div class="popup__content">
-                    <button class="popup__close" type="button"></button>
-                    <h2 class="popup__title">Новое место</h2>
-                    <form name = 'cardForm' class="popup__form popup__form_add-form"  novalidate>
-                        <input type="text" name="name" id="nameCard" class="popup__input popup__input_type_name popup__input_type_edite-card-name" minlength="2" maxlength="30" placeholder="Название" required>
-                        <span class="popup__input-error popup__input-error-name" name="errorName" id="nameCard-error" ></span>
-                        <input type="url" name="link" id="descriptionCard" class="popup__input popup__input_type_job popup__input_type_edite-card-link"
-                            placeholder="Ссылка на картинку" required>
-                            <span class="popup__input-error popup__input-error-description" name="errorDescription" id="descriptionCard-error" ></span>
-                        <button class="button popup__button" type="submit">Создать</button>
-                    </form>
-                </div>
-            </div>
-
-
-            <div class="popup popup_type_delete-card">
-                <div class="popup__content">
-                    <button class="popup__close" type="button"></button>
-                    <h2 class="popup__title">Вы уверены?</h2>
-                        <button class="button popup__button" type="submit">Да</button>
-                </div>
-            </div>
-
-
-            <div class="popup popup_type_update-avatar">
-                <div class="popup__content">
-                    <button class="popup__close" type="button"></button>
-                    <h2 class="popup__title">Обновить аватар</h2>
-                    <form name='cardForm' class="popup__form popup__form_avatar" novalidate>
-                        <input type="url" name="link" id="descriptionAvatar"
-                            class="popup__input popup__input_type_job popup__input_type_edite-card-link"
-                            placeholder="Ссылка на картинку" required>
-                        <span class="popup__input-error popup__input-error-description" name="errorDescription"
-                            id="descriptionAvatar-error"></span>
-                        <button class="button popup__button popup__button_disabled" type="submit">Сохранить</button>
-                    </form>
-                </div>
-            </div>
-        
-
-        
-        <div class="popup popup_type_image">
-            <div class="popup__container">
-                <button class="popup__close" type="button"></button>
-                <img class="popup__image" src='https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg' alt="фото">
-                <h2 class="popup__image-title"></h2>
-
-            </div>
+        <div class="popup popup_type_edit-profile">
+          <div class="popup__content">
+            <button class="popup__close" type="button"></button>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form
+              name="profileForm"
+              class="popup__form popup__form_profile"
+              novalidate
+            >
+              <input
+                type="text"
+                id="nameProfile"
+                name="name"
+                minlength="2"
+                maxlength="40"
+                class="popup__input popup__input_type_name"
+                placeholder="Имя"
+                required
+              />
+              <span
+                class="popup__input-error popup__input-error-name"
+                name="errorName"
+                id="nameProfile-error"
+              ></span>
+              <input
+                type="text"
+                name="description"
+                id="descriptionProfile"
+                minlength="2"
+                maxlength="200"
+                class="popup__input popup__input_type_job"
+                placeholder="О себе"
+                required
+              />
+              <span
+                class="popup__input-error popup__input-error-description"
+                id="descriptionProfile-error"
+                name="errorDescription"
+              ></span>
+              <button class="button popup__button" type="submit">
+                Сохранить
+              </button>
+            </form>
+          </div>
         </div>
-        
 
-        </main>
+        <div class="popup popup_type_edite-card">
+          <div class="popup__content">
+            <button class="popup__close" type="button"></button>
+            <h2 class="popup__title">Новое место</h2>
+            <form
+              name="cardForm"
+              class="popup__form popup__form_add-form"
+              novalidate
+            >
+              <input
+                type="text"
+                name="name"
+                id="nameCard"
+                class="
+                  popup__input
+                  popup__input_type_name
+                  popup__input_type_edite-card-name
+                "
+                minlength="2"
+                maxlength="30"
+                placeholder="Название"
+                required
+              />
+              <span
+                class="popup__input-error popup__input-error-name"
+                name="errorName"
+                id="nameCard-error"
+              ></span>
+              <input
+                type="url"
+                name="link"
+                id="descriptionCard"
+                class="
+                  popup__input
+                  popup__input_type_job
+                  popup__input_type_edite-card-link
+                "
+                placeholder="Ссылка на картинку"
+                required
+              />
+              <span
+                class="popup__input-error popup__input-error-description"
+                name="errorDescription"
+                id="descriptionCard-error"
+              ></span>
+              <button class="button popup__button" type="submit">
+                Создать
+              </button>
+            </form>
+          </div>
+        </div>
 
-        <footer class="footer">
-            <p class="footer__author">© 2021. Бестаев Руслан</p>
-        </footer>
+        <div class="popup popup_type_delete-card">
+          <div class="popup__content">
+            <button class="popup__close" type="button"></button>
+            <h2 class="popup__title">Вы уверены?</h2>
+            <button class="button popup__button" type="submit">Да</button>
+          </div>
+        </div>
 
+        <div class="popup popup_type_update-avatar">
+          <div class="popup__content">
+            <button class="popup__close" type="button"></button>
+            <h2 class="popup__title">Обновить аватар</h2>
+            <form
+              name="cardForm"
+              class="popup__form popup__form_avatar"
+              novalidate
+            >
+              <input
+                type="url"
+                name="link"
+                id="descriptionAvatar"
+                class="
+                  popup__input
+                  popup__input_type_job
+                  popup__input_type_edite-card-link
+                "
+                placeholder="Ссылка на картинку"
+                required
+              />
+              <span
+                class="popup__input-error popup__input-error-description"
+                name="errorDescription"
+                id="descriptionAvatar-error"
+              ></span>
+              <button
+                class="button popup__button popup__button_disabled"
+                type="submit"
+              >
+                Сохранить
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="popup popup_type_image">
+          <div class="popup__container">
+            <button class="popup__close" type="button"></button>
+            <img
+              class="popup__image"
+              src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg"
+              alt="фото"
+            />
+            <h2 class="popup__image-title"></h2>
+          </div>
+        </div>
+      </main>
+
+      <footer class="footer">
+        <p class="footer__author">© 2021. Бестаев Руслан</p>
+      </footer>
     </div>
-    
-</body>
-
+  </body>
 </html>
